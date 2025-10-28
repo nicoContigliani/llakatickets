@@ -1,95 +1,108 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const events = [
+    {
+      title: "Symphony No.9",
+      description: "Una experiencia orquestal en la sala de conciertos más prestigiosa de la ciudad.",
+      date: "15 MAR",
+      price: "$89",
+      location: "Teatro Nacional"
+    },
+    {
+      title: "Jazz & Wine Night", 
+      description: "Velada íntima con los mejores músicos de jazz y selección premium de vinos.",
+      date: "22 MAR",
+      price: "$65",
+      location: "Club Privé"
+    },
+    {
+      title: "Digital Art Gala",
+      description: "Exclusiva exhibición de arte digital con realidad aumentada y artistas internacionales.",
+      date: "30 MAR",
+      price: "$75",
+      location: "Museo Moderno"
+    }
+  ];
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const features = [
+    {
+      title: "Reservas Instantáneas",
+      description: "Acceso inmediato a los mejores eventos con confirmación al instante."
+    },
+    {
+      title: "Experiencias Premium", 
+      description: "Acceso privilegiado a eventos exclusivos y meet & greet con artistas."
+    },
+    {
+      title: "Soporte Dedicado",
+      description: "Asistencia personalizada para cada etapa de tu experiencia."
+    }
+  ];
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>TicketElegance</h1>
+          <p className={styles.subtitle}>
+            Donde cada evento se convierte en una experiencia memorable. 
+            Descubre la excelencia en entretenimiento.
+          </p>
+          <div className={styles.ctaGroup}>
+            <button className={`${styles.btn} ${styles.btnPrimary}`}>
+              Explorar Eventos
+            </button>
+            <button className={`${styles.btn} ${styles.btnSecondary}`}>
+              Conocer Más
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Events Section */}
+      <section className={styles.events}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>Eventos Destacados</h2>
+          <div className={styles.grid}>
+            {events.map((event, index) => (
+              <div key={index} className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.date}>{event.date}</div>
+                  <div className={styles.price}>{event.price}</div>
+                </div>
+                <h3 className={styles.cardTitle}>{event.title}</h3>
+                <p className={styles.cardDescription}>{event.description}</p>
+                <div className={styles.cardFooter}>
+                  <span className={styles.location}>{event.location}</span>
+                  <button className={styles.btn}>
+                    Reservar
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className={styles.features}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>Por Qué Elegirnos</h2>
+          <div className={styles.featureGrid}>
+            {features.map((feature, index) => (
+              <div key={index} className={styles.feature}>
+                <div className={styles.featureIcon}>
+                  <span>✦</span>
+                </div>
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
