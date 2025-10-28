@@ -1,14 +1,10 @@
 :root {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
-  --bg-card: rgba(255, 255, 255, 0.02);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(99, 102, 241, 0.3);
+  --accent: #6366f1;
   --text-primary: #ffffff;
   --text-secondary: #a3a3a3;
-  --text-muted: #6b7280;
-  --accent: #6366f1;
-  --accent-glow: 0 0 30px rgba(99, 102, 241, 0.15);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -17,20 +13,15 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
 }
 
-::selection {
-  background: var(--accent);
-  color: white;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
