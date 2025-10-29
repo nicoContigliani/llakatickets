@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@apollo/client": "^4.0.8",
+    "@clerk/astro": "^2.14.1",
+    "@clerk/nextjs": "^6.34.0",
     "@radix-ui/themes": "^3.2.1",
     "apollo-server-micro": "^3.13.0",
     "bcryptjs": "^3.0.2",
