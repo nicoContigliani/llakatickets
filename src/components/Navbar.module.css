@@ -1,19 +1,22 @@
 /* src/app/components/Navbar.module.css */
+
+/* ===== NAVBAR BASE ===== */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .navbarScrolled {
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(30px) saturate(200%);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   
   .container {
@@ -26,44 +29,74 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 80px;
+    transition: height 0.3s ease;
   }
   
-  /* Logo */
+  /* ===== LOGO ===== */
   .logo {
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: translateY(-1px);
   }
   
   .logoIcon {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #000 0%, #333 100%);
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease;
   }
   
   .logo:hover .logoIcon {
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+  
+  .logoLetter {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-geist-sans);
   }
   
   .logoText {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #000;
-    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
   }
   
-  /* Navigation */
+  .logoPrimary {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .logoSecondary {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6366f1;
+    letter-spacing: 0.05em;
+  }
+  
+  /* ===== DESKTOP NAVIGATION ===== */
   .navigation {
     display: none;
     align-items: center;
-    gap: 2.5rem;
+    gap: 3rem;
   }
   
   @media (min-width: 1024px) {
@@ -73,52 +106,56 @@
   }
   
   .navLink {
-    color: #666;
+    color: #d1d5db;
     font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
     padding: 8px 0;
     position: relative;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
+    font-family: var(--font-geist-sans);
   }
   
   .navLink:hover {
-    color: #000;
+    color: #ffffff;
   }
   
-  .navLink::after {
+  .navLink::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
-    background: #000;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 1px;
     transition: width 0.3s ease;
   }
   
-  .navLink:hover::after {
+  .navLink:hover::before {
     width: 100%;
   }
   
   .navLinkActive {
-    color: #000;
+    color: #ffffff;
   }
   
-  .navLinkActive::after {
+  .navLinkActive::before {
     width: 100%;
   }
   
-  /* Mobile Menu */
+  /* ===== MOBILE MENU ===== */
   .mobileMenuButton {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 8px;
-    background: none;
-    border: none;
+    gap: 5px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
   }
   
   @media (min-width: 1024px) {
@@ -128,27 +165,29 @@
   }
   
   .mobileMenuButton:hover {
-    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
   }
   
   .menuLine {
-    width: 20px;
+    width: 22px;
     height: 2px;
-    background: #000;
-    transition: all 0.3s ease;
+    background: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
   }
   
   .mobileMenuOpen .menuLine:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(7px, 7px);
   }
   
   .mobileMenuOpen .menuLine:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
   
   .mobileMenuOpen .menuLine:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(7px, -7px);
   }
   
   .mobileMenu {
@@ -156,14 +195,14 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(30px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0;
     transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .mobileMenuOpen {
@@ -179,28 +218,41 @@
   }
   
   .mobileNavLink {
-    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #d1d5db;
     font-size: 1.1rem;
     font-weight: 500;
     text-decoration: none;
-    padding: 1rem 2rem;
-    transition: all 0.2s ease;
-    border-left: 3px solid transparent;
+    padding: 1.25rem 2rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
   }
   
   .mobileNavLink:hover {
-    color: #000;
-    background: rgba(0, 0, 0, 0.03);
-    border-left-color: #000;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: #6366f1;
+    padding-left: 2.5rem;
   }
   
   .mobileNavLinkActive {
-    color: #000;
-    background: rgba(0, 0, 0, 0.02);
-    border-left-color: #000;
+    color: #ffffff;
+    background: rgba(99, 102, 241, 0.1);
+    border-left-color: #6366f1;
   }
   
-  /* Auth Section */
+  .mobileNavIcon {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .mobileNavLink:hover .mobileNavIcon {
+    opacity: 1;
+  }
+  
+  /* ===== AUTH SECTION ===== */
   .authSection {
     display: flex;
     align-items: center;
@@ -208,44 +260,48 @@
   }
   
   .loginButton {
-    color: #666;
-    background: none;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #d1d5db;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
+    backdrop-filter: blur(10px);
+    font-family: var(--font-geist-sans);
   }
   
   .loginButton:hover {
-    color: #000;
-    border-color: rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.02);
-  }
-  
-  .signupButton {
-    background: #000;
-    color: #fff;
-    border: 1px solid #000;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-  }
-  
-  .signupButton:hover {
-    background: #333;
-    border-color: #333;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
   }
   
-  /* User Section */
+  .signupButton {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    font-family: var(--font-geist-sans);
+  }
+  
+  .signupButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+  
+  /* ===== USER SECTION ===== */
   .userSection {
     display: flex;
     align-items: center;
@@ -253,34 +309,38 @@
   }
   
   .iconButton {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    color: #666;
+    transition: all 0.3s ease;
+    color: #d1d5db;
+    backdrop-filter: blur(10px);
   }
   
   .iconButton:hover {
-    color: #000;
-    background: rgba(0, 0, 0, 0.05);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
   }
   
-  /* Loading States */
+  /* ===== LOADING STATES ===== */
   .skeleton {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 80px;
   }
   
   .skeletonLogo {
-    width: 120px;
-    height: 24px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    border-radius: 6px;
-    animation: loading 1.5s infinite;
+    width: 150px;
+    height: 32px;
+    background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+    border-radius: 8px;
+    animation: loading 2s infinite;
+    background-size: 200% 100%;
   }
   
   .skeletonNav {
@@ -294,11 +354,12 @@
     }
     
     .skeletonNavItem {
-      width: 60px;
+      width: 70px;
       height: 20px;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
       border-radius: 4px;
-      animation: loading 1.5s infinite;
+      animation: loading 2s infinite;
+      background-size: 200% 100%;
     }
   }
   
@@ -308,34 +369,35 @@
   }
   
   .skeletonButton {
-    width: 80px;
+    width: 100px;
     height: 40px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
     border-radius: 8px;
-    animation: loading 1.5s infinite;
+    animation: loading 2s infinite;
+    background-size: 200% 100%;
   }
   
   @keyframes loading {
     0% {
-      background-position: -200px 0;
+      background-position: -200% 0;
     }
     100% {
-      background-position: calc(200px + 100%) 0;
+      background-position: 200% 0;
     }
   }
   
-  /* Responsive */
+  /* ===== RESPONSIVE DESIGN ===== */
   @media (max-width: 768px) {
     .container {
       padding: 0 1.5rem;
     }
     
     .content {
-      height: 64px;
+      height: 70px;
     }
     
     .logoText {
-      font-size: 1.1rem;
+      display: none;
     }
     
     .authSection {
@@ -347,6 +409,19 @@
       padding: 8px 16px;
       font-size: 0.9rem;
     }
+    
+    .loginButton span,
+    .signupButton span {
+      display: none;
+    }
+    
+    .loginButton::before {
+      content: 'Entrar';
+    }
+    
+    .signupButton::before {
+      content: 'Cuenta';
+    }
   }
   
   @media (max-width: 480px) {
@@ -354,105 +429,32 @@
       padding: 0 1rem;
     }
     
-    .logoText {
-      display: none;
-    }
-    
     .authSection {
       gap: 0.5rem;
     }
     
-    .loginButton {
-      padding: 8px 12px;
-      min-width: auto;
-    }
-    
+    .loginButton,
     .signupButton {
-      padding: 8px 14px;
+      padding: 8px 12px;
       min-width: auto;
     }
   }
   
-  /* Dark Mode Support */
-  @media (prefers-color-scheme: dark) {
-    .navbar {
-      background: rgba(0, 0, 0, 0.86);
-      border-bottom-color: rgba(255, 255, 255, 0.08);
-    }
-    
-    .navbarScrolled {
-      background: rgba(0, 0, 0, 0.94);
-    }
-    
-    .logoIcon {
-      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
-    }
-    
-    .logoText {
-      color: #fff;
-    }
-    
-    .navLink {
-      color: #ccc;
-    }
-    
-    .navLink:hover,
-    .navLinkActive {
-      color: #fff;
-    }
-    
-    .navLink::after,
-    .navLinkActive::after {
-      background: #fff;
-    }
-    
-    .menuLine {
-      background: #fff;
-    }
-    
-    .mobileMenu {
-      background: rgba(0, 0, 0, 0.98);
-    }
-    
-    .mobileNavLink {
-      color: #ccc;
-    }
-    
-    .mobileNavLink:hover,
-    .mobileNavLinkActive {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      border-left-color: #fff;
-    }
-    
-    .loginButton {
-      color: #ccc;
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .loginButton:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.4);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    
-    .signupButton {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
-    
-    .signupButton:hover {
-      background: #ccc;
-      border-color: #ccc;
-    }
-    
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .logo,
+    .navLink,
+    .mobileMenuButton,
+    .mobileMenu,
+    .loginButton,
+    .signupButton,
     .iconButton {
-      color: #ccc;
+      transition: none;
+      animation: none;
     }
     
-    .iconButton:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.1);
+    .mobileMenuOpen .menuLine {
+      transform: none;
     }
   }
